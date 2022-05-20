@@ -1,12 +1,12 @@
 package com.bolaocopaonline.bolaocopaonline.integration.data.models
 
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-class Group(
+@Entity
+@Table(name = "groups")
+data class Group(
 
     @field:Id
     @field:GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +14,8 @@ class Group(
 
     @field:NotNull
     @field:Size(min = 5, max = 50)
-    val name: String
+    val name: String,
+
+    @field:OneToMany(cascade = arrayOf(CascadeType.ALL), fetch = FetchType.EAGER, mappedBy = "group")
+    val matches: List<Match>
 )
