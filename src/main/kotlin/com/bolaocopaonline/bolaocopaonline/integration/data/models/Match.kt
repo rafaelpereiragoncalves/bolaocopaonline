@@ -1,5 +1,7 @@
 package com.bolaocopaonline.bolaocopaonline.integration.data.models
 
+import java.sql.Timestamp
+import java.util.Date
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
@@ -10,9 +12,9 @@ data class Match(
     @field:GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @field:ManyToOne(fetch = FetchType.EAGER)
-    @field:JoinColumn(name = "group_id", foreignKey = ForeignKey(name = "fk_group_id"), nullable = false)
-    val group: Group,
+    @field:ManyToOne
+    @field:JoinColumn(name = "keyGroup_id", foreignKey = ForeignKey(name = "fk_keyGroup_id"), nullable = false)
+    val keyGroup: KeyGroup,
 
     @field:ManyToOne
     @field:JoinColumn(name = "teamOne_id", foreignKey = ForeignKey(name = "fk_teamOne_id"), nullable = false)
@@ -27,4 +29,7 @@ data class Match(
 
     @field:NotNull
     val resultTwo: Int,
+
+    @field:NotNull
+    val dateTime: Timestamp
 )
