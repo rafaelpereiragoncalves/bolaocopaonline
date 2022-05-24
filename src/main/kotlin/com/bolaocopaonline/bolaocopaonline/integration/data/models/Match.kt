@@ -31,5 +31,8 @@ data class Match(
     val resultTwo: Int,
 
     @field:NotNull
-    val dateTime: Timestamp
+    val dateTime: Timestamp,
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "match")
+    val guesses: List<Guess>
 )
