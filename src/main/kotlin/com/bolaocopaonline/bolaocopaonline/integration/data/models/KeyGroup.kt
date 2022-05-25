@@ -1,10 +1,6 @@
 package com.bolaocopaonline.bolaocopaonline.integration.data.models
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
@@ -17,6 +13,11 @@ data class KeyGroup(
 
     @field:NotNull
     @field:Size(min = 5, max = 50)
-    val name: String
-) {
-}
+    val name: String,
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "keyGroup")
+    val teams: List<Team>? = emptyList(),
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "keyGroup")
+    val matches: List<Match>? = emptyList()
+)

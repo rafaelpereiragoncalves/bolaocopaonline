@@ -1,7 +1,6 @@
 package com.bolaocopaonline.bolaocopaonline.integration.data.models
 
 import java.sql.Timestamp
-import java.util.Date
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
@@ -13,7 +12,7 @@ data class Match(
     val id: Long,
 
     @field:ManyToOne
-    @field:JoinColumn(name = "keyGroup_id", foreignKey = ForeignKey(name = "fk_keyGroup_id"), nullable = false)
+    @field:JoinColumn(name = "keyGroup_id", foreignKey = ForeignKey(name = "fk_keyGroupMatch_id"), nullable = false)
     val keyGroup: KeyGroup,
 
     @field:ManyToOne
@@ -33,6 +32,9 @@ data class Match(
     @field:NotNull
     val dateTime: Timestamp,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "match")
-    val guesses: List<Guess>
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "match")
+    val guesses: List<Guess>,
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "match")
+    val bolaoMatches: List<BolaoMatch>
 )

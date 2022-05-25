@@ -13,9 +13,13 @@ data class Guess(
 
     @field:NotNull
     @field:Size(min = 5, max = 50)
-    val name: String
-) {
-    @ManyToOne
-    @JoinColumn(name = "match_id", foreignKey = ForeignKey(name = "fk_match_id"), nullable = false)
-    var match: Match? = null
-}
+    val name: String,
+
+    @field:ManyToOne
+    @field:JoinColumn(name = "match_id", foreignKey = ForeignKey(name = "fk_matchGuess_id"), nullable = false)
+    val match: Match,
+
+    @field:ManyToOne
+    @field:JoinColumn(name = "user_id", foreignKey = ForeignKey(name = "fk_userGuess_id"), nullable = false)
+    val user: User
+)

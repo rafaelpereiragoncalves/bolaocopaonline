@@ -26,7 +26,9 @@ data class User(
     @field:NotNull
     val cellNumber: String,
 
-    @field:ManyToOne
-    @field:JoinColumn(name = "fk_bolao_id", columnDefinition = "bigint")
-    val bolao: Bolao
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    val userboloes: List<UserBolao>? = emptyList(),
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    val guesses: List<Guess>? = emptyList()
 )

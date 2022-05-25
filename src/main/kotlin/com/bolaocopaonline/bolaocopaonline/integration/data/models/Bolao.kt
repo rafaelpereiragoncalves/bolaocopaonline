@@ -12,10 +12,12 @@ data class Bolao(
     val id: Long,
 
     @field:NotNull
-    @field:Size(min = 5, max = 50)
+    @field:Size(min = 2, max = 20)
     val name: String,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "bolao")
-    val users: List<User>
-) {
-}
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "bolao")
+    val userBoloes: List<UserBolao>,
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "bolao")
+    val bolaoMatches: List<BolaoMatch>
+)
