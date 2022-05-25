@@ -9,7 +9,6 @@ import javax.validation.constraints.Size
 @Entity
 @Table(name = "users")
 data class User(
-
     @field:Id
     @field:GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
@@ -25,5 +24,11 @@ data class User(
     val birthdate: Date,
 
     @field:NotNull
-    val cellNumber: String
+    val cellNumber: String,
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    val userboloes: List<UserBolao>? = emptyList(),
+
+    @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    val guesses: List<Guess>? = emptyList()
 )
