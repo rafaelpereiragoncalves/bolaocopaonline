@@ -2,19 +2,37 @@ package com.bolaocopaonline.bolaocopaonline.integration.controller
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.UserRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
+import com.bolaocopaonline.bolaocopaonline.integration.data.service.UserService
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("users")
-class UserController(val repository: UserRepository) {
+class UserController(private val service: UserService, private val repository: UserRepository) {
 
     @PostMapping
-    fun create(@RequestBody user: User): ResponseEntity<User> {
-        val userSave = repository.save(user)
-        return ResponseEntity.ok(userSave)
+    @ResponseStatus(HttpStatus.CREATED)
+    fun create(@RequestBody user: User): User = service.create(user)
+
+    @GetMapping
+    fun getAll(): List<User> = repository.findAll()
+
+    @GetMapping("/{id}")
+    fun getById(@PathVariable id: Long) : ResponseEntity<User> =
+        service.getById(id).map {
+            ResponseEntity.ok(it)
+        }.orElse((ResponseEntity.notFound().build()))
+
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Long, @RequestBody user: User) : ResponseEntity<User> =
+        service.update(id, user).map {
+            ResponseEntity.ok(it)
+        }.orElse(ResponseEntity.notFound().build())
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long) : ResponseEntity<Void> {
+        service.delete(id)
+        return ResponseEntity<Void>(HttpStatus.OK)
     }
 }
