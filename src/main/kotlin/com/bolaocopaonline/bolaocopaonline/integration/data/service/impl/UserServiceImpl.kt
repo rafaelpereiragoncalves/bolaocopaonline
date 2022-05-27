@@ -1,7 +1,8 @@
-package com.bolaocopaonline.bolaocopaonline.integration.data.service
+package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.UserRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
+import com.bolaocopaonline.bolaocopaonline.integration.data.service.UserService
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -36,6 +37,6 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
     override fun delete(id: Long) {
         repository.findById(id).map {
             repository.delete(it)
-        }.orElseThrow { throw RuntimeException("Id not found $")}
+        }.orElseThrow { throw RuntimeException("Id not found.")}
     }
 }
