@@ -14,7 +14,7 @@ data class User(
     val id: Long,
 
     @field:NotNull
-    @field:Size(min = 5, max = 50)
+    @field:Size(min = 3, max = 50)
     val name: String,
 
     @field:Email

@@ -2,9 +2,6 @@ package com.bolaocopaonline.bolaocopaonline.integration.data.service
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.UserRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -24,7 +21,6 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
 
     override fun update(id: Long, user: User): Optional<User> {
         val optional = getById(id)
-        if(optional.isEmpty()) Optional.empty<User>()
 
         return optional.map {
             val userToUpdate = it.copy(

@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("users")
-class UserController(private val service: UserService, private val repository: UserRepository) {
+class UserController(private val service: UserService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody user: User): User = service.create(user)
 
     @GetMapping
-    fun getAll(): List<User> = repository.findAll()
+    fun getAll(): List<User> = service.getAll()
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long) : ResponseEntity<User> =

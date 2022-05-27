@@ -12,7 +12,7 @@ interface UserService {
 
     fun getById(id: Long) : Optional<User>
 
-    fun update(@PathVariable id: Long, @RequestBody user: User) : Optional<User>
+    fun update(id: Long, user: User) : Optional<User>
 
-    fun delete(@PathVariable id: Long)
+    fun delete(id: Long)
 }
