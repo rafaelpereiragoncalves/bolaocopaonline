@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("teams")
 class TeamController(private val service: TeamService) {
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody team: Team): Team = service.create(team)
 
     @GetMapping
@@ -19,7 +21,7 @@ class TeamController(private val service: TeamService) {
     fun getById(@PathVariable id: Long) : ResponseEntity<Team> =
         service.getById(id).map {
             ResponseEntity.ok(it)
-        }.orElse((ResponseEntity.notFound().build()))
+        }.orElse(ResponseEntity.notFound().build())
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody team: Team) : ResponseEntity<Team> =
