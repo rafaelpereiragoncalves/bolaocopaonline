@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("teams")
 class TeamController(private val service: TeamService) {
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody team: Team): Team = service.create(team)
 
     @GetMapping
