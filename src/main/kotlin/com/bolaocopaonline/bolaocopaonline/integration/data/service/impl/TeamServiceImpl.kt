@@ -37,6 +37,6 @@ class TeamServiceImpl(private val repository: TeamRepository) : TeamService {
     override fun delete(id: Long) {
         repository.findById(id).map {
             repository.delete(it)
-        }.orElseThrow { throw RuntimeException("Id not found.") }
+        }.orElseThrow { throw RuntimeException("Id not found.")}
     }
 }
