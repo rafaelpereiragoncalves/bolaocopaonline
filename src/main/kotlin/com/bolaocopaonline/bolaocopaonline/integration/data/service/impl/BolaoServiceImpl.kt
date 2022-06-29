@@ -3,9 +3,12 @@ package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.BolaoRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Bolao
 import com.bolaocopaonline.bolaocopaonline.integration.data.service.BolaoService
+import org.springframework.stereotype.Service
 import java.util.*
 
+@Service
 class BolaoServiceImpl(private val repository: BolaoRepository) : BolaoService {
+
     override fun create(bolao: Bolao): Bolao {
         return repository.save(bolao)
     }

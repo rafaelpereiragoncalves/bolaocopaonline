@@ -3,8 +3,10 @@ package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.GuessRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Guess
 import com.bolaocopaonline.bolaocopaonline.integration.data.service.GuessService
+import org.springframework.stereotype.Service
 import java.util.*
 
+@Service
 class GuessServiceImpl(private val repository: GuessRepository) : GuessService {
     override fun create(guess: Guess): Guess {
         return repository.save(guess)

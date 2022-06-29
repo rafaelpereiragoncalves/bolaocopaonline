@@ -1,6 +1,7 @@
 package com.bolaocopaonline.bolaocopaonline.integration.data.service
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Bolao
+import org.springframework.stereotype.Service
 import java.util.Optional
 
 interface BolaoService {
