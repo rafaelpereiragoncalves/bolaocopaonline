@@ -5,6 +5,7 @@ import com.bolaocopaonline.bolaocopaonline.integration.data.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("users")
@@ -12,7 +13,7 @@ class UserController(private val service: UserService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody user: User): User = service.create(user)
+    fun create(@RequestBody @Valid user: User): User = service.create(user)
 
     @GetMapping
     fun getAll(): List<User> = service.getAll()
