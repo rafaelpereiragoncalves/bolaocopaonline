@@ -1,8 +1,8 @@
-package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
+package com.bolaocopaonline.bolaocopaonline.integration.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.TeamRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Team
-import com.bolaocopaonline.bolaocopaonline.integration.data.service.TeamService
+import com.bolaocopaonline.bolaocopaonline.integration.service.TeamService
 import org.springframework.stereotype.Service
 import java.util.*
 

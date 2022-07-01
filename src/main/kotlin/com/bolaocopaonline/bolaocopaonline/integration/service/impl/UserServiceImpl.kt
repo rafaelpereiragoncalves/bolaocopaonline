@@ -1,8 +1,8 @@
-package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
+package com.bolaocopaonline.bolaocopaonline.integration.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.UserRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
-import com.bolaocopaonline.bolaocopaonline.integration.data.service.UserService
+import com.bolaocopaonline.bolaocopaonline.integration.service.UserService
 import org.springframework.stereotype.Service
 import java.util.*
 

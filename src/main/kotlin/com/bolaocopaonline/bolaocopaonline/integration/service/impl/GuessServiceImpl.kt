@@ -1,8 +1,8 @@
-package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
+package com.bolaocopaonline.bolaocopaonline.integration.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.GuessRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Guess
-import com.bolaocopaonline.bolaocopaonline.integration.data.service.GuessService
+import com.bolaocopaonline.bolaocopaonline.integration.service.GuessService
 import org.springframework.stereotype.Service
 import java.util.*
 
