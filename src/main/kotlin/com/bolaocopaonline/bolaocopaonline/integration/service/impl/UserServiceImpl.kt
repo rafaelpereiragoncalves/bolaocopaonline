@@ -16,7 +16,7 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
         return repository.findAll()
     }
 
-    override fun getById(id: Long): Optional<User> {
+    override fun getById(id: Optional<User>): Optional<User> {
         return repository.findById(id)
     }
 
