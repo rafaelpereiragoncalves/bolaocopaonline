@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UserServiceImpl(private val repository: UserRepository) : UserService {
+class UserServiceImpl(
+    private val repository: UserRepository,
+    private val users: List<User>
+) : UserService {
     override fun create(user: User): User {
         return repository.save(user)
     }
@@ -16,7 +19,7 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
         return repository.findAll()
     }
 
-    override fun getById(id: Optional<User>): Optional<User> {
+    override fun getById(id: Long): Optional<User> {
         return repository.findById(id)
     }
 

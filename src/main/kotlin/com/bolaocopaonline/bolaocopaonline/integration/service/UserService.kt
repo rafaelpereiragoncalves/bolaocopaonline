@@ -9,7 +9,7 @@ interface UserService {
 
     fun getAll() : List<User>
 
-    fun getById(id: Optional<User>) : Optional<User>
+    fun getById(id: Long) : Optional<User>
 
     fun update(id: Long, user: User) : Optional<User>
 

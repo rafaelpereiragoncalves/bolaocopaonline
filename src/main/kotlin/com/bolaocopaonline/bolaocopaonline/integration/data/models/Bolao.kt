@@ -10,7 +10,7 @@ import javax.validation.constraints.Size
 data class Bolao(
     @field:Id
     @field:GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    var id: Long,
 
     @field:NotNull
     @field:Size(min = 2, max = 20)
@@ -48,12 +48,12 @@ data class Bolao(
     val userLimit: Int,
 
     @field:ManyToOne
-    @field:JoinColumn(name = "user_id", foreignKey = ForeignKey(name = "fk_userBolao_id"), nullable = false)
-    val administrator: Optional<User>,
+    @field:JoinColumn(name = "adm_user_id", foreignKey = ForeignKey(name = "fk_userBolao_id"), nullable = false)
+    val administrator: User,
 
     @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "bolao")
-    val userBoloes: List<UserBolao>,
+    val userBoloes: List<UserBolao> = emptyList(),
 
     @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "bolao")
-    val bolaoMatches: List<BolaoMatch>
+    val bolaoMatches: List<BolaoMatch> = emptyList()
 )

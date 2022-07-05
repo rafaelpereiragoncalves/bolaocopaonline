@@ -7,6 +7,13 @@ data class BolaoDTO(
     //Bolão data
     val name: String,
     val guessesToRound: Int,
+    val approvalToAdmin: Boolean
+)
+
+data class BolaoDTOForm(
+    //Bolão data
+    val name: String,
+    val guessesToRound: Int,
     val approvalToAdmin: Boolean,
 
     //Rules:
@@ -20,5 +27,5 @@ data class BolaoDTO(
     val userLimit: Int,
 
     //Participants:
-    val administrator: Optional<User>,
+    val administrator: Long
 )
