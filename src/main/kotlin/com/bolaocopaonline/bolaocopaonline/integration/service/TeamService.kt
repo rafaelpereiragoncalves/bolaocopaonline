@@ -1,4 +1,4 @@
-package com.bolaocopaonline.bolaocopaonline.integration.data.service
+package com.bolaocopaonline.bolaocopaonline.integration.service
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Team
 import java.util.Optional

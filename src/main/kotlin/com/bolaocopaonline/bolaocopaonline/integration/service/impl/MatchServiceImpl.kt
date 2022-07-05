@@ -1,8 +1,8 @@
-package com.bolaocopaonline.bolaocopaonline.integration.data.service.impl
+package com.bolaocopaonline.bolaocopaonline.integration.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.MatchRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Match
-import com.bolaocopaonline.bolaocopaonline.integration.data.service.MatchService
+import com.bolaocopaonline.bolaocopaonline.integration.service.MatchService
 import org.springframework.stereotype.Service
 import java.util.*
 

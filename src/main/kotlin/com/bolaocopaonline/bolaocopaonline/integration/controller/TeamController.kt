@@ -1,7 +1,7 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Team
-import com.bolaocopaonline.bolaocopaonline.integration.data.service.TeamService
+import com.bolaocopaonline.bolaocopaonline.integration.service.TeamService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

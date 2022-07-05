@@ -9,4 +9,12 @@ import java.util.*
 interface UserRepository : JpaRepository<User, Long> {
 
     fun findByName(name: String): Optional<User>
+
+    fun getUserById(id: Long): User {
+        val users: List<User> = emptyList()
+
+        return users.stream().filter { u ->
+            u.id == id
+        }.findFirst().get()
+    }
 }

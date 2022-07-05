@@ -1,7 +1,9 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
+import com.bolaocopaonline.bolaocopaonline.integration.data.dto.BolaoDTO
+import com.bolaocopaonline.bolaocopaonline.integration.data.dto.BolaoDTOForm
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Bolao
-import com.bolaocopaonline.bolaocopaonline.integration.data.service.BolaoService
+import com.bolaocopaonline.bolaocopaonline.integration.service.BolaoService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,10 +15,10 @@ class BolaoController(private val service: BolaoService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody @Valid bolao: Bolao) : Bolao = service.create(bolao)
+    fun create(@RequestBody @Valid bolaoDTOForm: BolaoDTOForm) = service.create(bolaoDTOForm)
 
     @GetMapping
-    fun getAll() : List<Bolao> = service.getAll()
+    fun getAll() : List<BolaoDTO> = service.getAll()
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long) : ResponseEntity<Bolao> =
