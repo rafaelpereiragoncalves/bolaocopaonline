@@ -17,6 +17,10 @@ data class User(
     @field:Size(min = 3, max = 50)
     val name: String,
 
+    @field:NotNull
+    @field:Size(min = 8, max = 50)
+    val password: String,
+
     @field:Email
     val email: String,
 
