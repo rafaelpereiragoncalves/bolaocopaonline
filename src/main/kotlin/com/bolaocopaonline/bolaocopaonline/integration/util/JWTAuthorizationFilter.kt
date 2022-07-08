@@ -31,11 +31,11 @@ class JWTAuthorizationFilter(
         chain.doFilter(request, response)
     }
 
-    private fun getAuthentication(authorization: String): UsernamePasswordAuthenticationToken {
-        val token = authorization.substring(7)
+    private fun getAuthentication(auth: String): UsernamePasswordAuthenticationToken {
+        val token = auth.substring(7)
         if(jwtUtils.isTokenValid(token)) {
             val id = jwtUtils.getUsuarioId(token)
-            if(id.isNullOrBlank() && !id.isNullOrEmpty()){
+            if(!id.isNullOrBlank() && id.isNotEmpty()){
                 val user = userRepository.findByIdOrNull(id.toLong()) ?: throw UsernameNotFoundException("Usuário não encontrado!")
                 val userImpl = UserDetailImpl(user)
                 return UsernamePasswordAuthenticationToken(userImpl, null, userImpl.authorities)
