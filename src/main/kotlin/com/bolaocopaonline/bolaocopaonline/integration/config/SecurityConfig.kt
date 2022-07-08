@@ -28,7 +28,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.csrf().disable().authorizeRequests()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
-            .antMatchers(HttpMethod.POST, "/user").permitAll()
+            .antMatchers(HttpMethod.POST, "/users").permitAll()
+            .antMatchers(HttpMethod.GET, "/swagger-ui/index.html").permitAll()
             .anyRequest().authenticated()
 
         http.cors().configurationSource(configurationCors())

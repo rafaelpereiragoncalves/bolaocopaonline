@@ -7,6 +7,7 @@ import com.bolaocopaonline.bolaocopaonline.integration.util.JWTUtils
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -15,17 +16,16 @@ import org.springframework.web.bind.annotation.RestController
 class LoginController(val userRepository: UserRepository) {
 
     @PostMapping
-    fun login(loginDTO: LoginDTO) : ResponseEntity<Any> {
-        try{
-
+    fun login(@RequestBody loginDTO: LoginDTO) : ResponseEntity<Any> {
+        return try{
             val userFound = userRepository.findByEmail(loginDTO.name)
             val token = JWTUtils().tokenGenerate(userFound.id.toString())
 
             val user = LoginResponseDTO(userFound.name, userFound.email, token)
-            return ResponseEntity(user, HttpStatus.OK)
+            ResponseEntity(user, HttpStatus.OK)
 
         } catch (e: Exception) {
-            return ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

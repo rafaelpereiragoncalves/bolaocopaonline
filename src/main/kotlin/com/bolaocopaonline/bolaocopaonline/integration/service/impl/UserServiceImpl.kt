@@ -29,6 +29,7 @@ class UserServiceImpl(
         return optional.map {
             val userToUpdate = it.copy(
                 name = user.name,
+                password = user.password,
                 email = user.email,
                 birthdate = user.birthdate,
                 cellNumber = user.cellNumber
