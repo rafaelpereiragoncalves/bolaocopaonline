@@ -8,7 +8,7 @@ import java.util.*
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
 
-    fun findByName(name: String): Optional<User>
+    fun findByEmail(email: String): User
 
     fun getUserById(id: Long): User {
         val users: List<User> = emptyList()
