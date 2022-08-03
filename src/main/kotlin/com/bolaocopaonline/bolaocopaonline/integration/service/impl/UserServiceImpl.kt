@@ -1,6 +1,7 @@
 package com.bolaocopaonline.bolaocopaonline.integration.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.UserRepository
+import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTO
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
 import com.bolaocopaonline.bolaocopaonline.integration.service.UserService
 import org.springframework.stereotype.Service
@@ -23,13 +24,12 @@ class UserServiceImpl(
         return repository.findById(id)
     }
 
-    override fun update(id: Long, user: User): Optional<User> {
+    override fun update(id: Long, user: UserDTO): Optional<User> {
         val optional = getById(id)
 
         return optional.map {
             val userToUpdate = it.copy(
                 name = user.name,
-                password = user.password,
                 email = user.email,
                 birthdate = user.birthdate,
                 cellNumber = user.cellNumber

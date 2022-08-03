@@ -1,5 +1,6 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
+import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTO
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
 import com.bolaocopaonline.bolaocopaonline.integration.service.UserService
 import org.springframework.http.HttpStatus
@@ -25,7 +26,7 @@ class UserController(private val service: UserService) {
         }.orElse((ResponseEntity.notFound().build()))
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody user: User) : ResponseEntity<User> =
+    fun update(@PathVariable id: Long, @RequestBody user: UserDTO) : ResponseEntity<User> =
         service.update(id, user).map {
             ResponseEntity.ok(it)
         }.orElse(ResponseEntity.notFound().build())
