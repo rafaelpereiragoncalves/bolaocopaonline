@@ -2,22 +2,34 @@ package com.bolaocopaonline.bolaocopaonline.integration.service.impl
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.UserRepository
 import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTO
+import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTOForm
+import com.bolaocopaonline.bolaocopaonline.integration.data.mapper.UserFormMapper
+import com.bolaocopaonline.bolaocopaonline.integration.data.mapper.UserMapper
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
 import com.bolaocopaonline.bolaocopaonline.integration.service.UserService
 import org.springframework.stereotype.Service
 import java.util.*
+import java.util.stream.Collectors
 
 @Service
 class UserServiceImpl(
     private val repository: UserRepository,
-    private val users: List<User>
+    private var users: List<User>,
+    private val userMapper: UserMapper,
+    private val userFormMapper: UserFormMapper
 ) : UserService {
-    override fun create(user: User): User {
-        return repository.save(user)
+    override fun create(userDTOForm: UserDTOForm): UserDTO {
+        val user = userFormMapper.map(userDTOForm)
+        user.id = users.size.toLong() + 1
+        users = users.plus(user)
+        repository.save(user)
+        return userMapper.map(user)
     }
 
-    override fun getAll(): List<User> {
-        return repository.findAll()
+    override fun getAll(): List<UserDTO> {
+        return users.stream().map {
+            u -> userMapper.map(u)
+        }.collect(Collectors.toList())
     }
 
     override fun getById(id: Long): Optional<User> {

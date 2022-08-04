@@ -1,6 +1,7 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTO
+import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTOForm
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
 import com.bolaocopaonline.bolaocopaonline.integration.service.UserService
 import org.springframework.http.HttpStatus
@@ -14,10 +15,10 @@ class UserController(private val service: UserService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody @Valid user: User): User = service.create(user)
+    fun create(@RequestBody @Valid userDTOForm: UserDTOForm) = service.create(userDTOForm)
 
     @GetMapping
-    fun getAll(): List<User> = service.getAll()
+    fun getAll() : List<UserDTO> = service.getAll()
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long) : ResponseEntity<User> =

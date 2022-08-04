@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class BolaoFormMapper(private val repository: UserRepository): Mapper<BolaoDTOForm, Bolao> {
     override fun map(t: BolaoDTOForm): Bolao {
         return Bolao(
-            id = 0,
+            id = 1,
             name = t.name,
             guessesToRound = t.guessesToRound,
             approvalToAdmin = t.approvalToAdmin,

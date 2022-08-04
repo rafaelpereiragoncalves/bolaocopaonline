@@ -8,3 +8,11 @@ data class UserDTO(
     val birthdate: Date,
     val cellNumber: String
 )
+
+data class UserDTOForm(
+    val name: String,
+    val password: String,
+    val email: String,
+    val birthdate: Date,
+    val cellNumber: String,
+)
