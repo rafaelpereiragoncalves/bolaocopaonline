@@ -38,9 +38,22 @@ class UserServiceImpl(
     }
 
     override fun updateUser(userDTO: UserDTO): UserDTO {
-        getUser(userDTO.id)
+        val exists = userRepository.existsById(userDTO.id)
+
+        if(!exists)
+            throw UserException("Usuário com id ${userDTO.id} não existe")
+
         userRepository.save(userMapper.toEntity((userDTO)))
         return userDTO
+    }
+
+    override fun deleteUser(id: Long) {
+        val exists = userRepository.existsById(id)
+
+        if(!exists)
+            throw UserException("Usuário com id $id não existe")
+
+        userRepository.deleteById(id)
     }
 
 

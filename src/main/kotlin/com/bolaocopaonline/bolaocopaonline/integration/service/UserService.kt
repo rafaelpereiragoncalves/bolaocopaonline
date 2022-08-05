@@ -13,6 +13,8 @@ interface UserService {
     fun getUser(id: Long): UserDTO
 
     fun updateUser(userDTO: UserDTO): UserDTO
+
+    fun deleteUser(id: Long)
 //
 //    fun update(id: Long, user: UserDTO) : Optional<User>
 //

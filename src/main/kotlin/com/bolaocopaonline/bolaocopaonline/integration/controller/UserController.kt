@@ -29,10 +29,8 @@ class UserController(
     fun updateUser(@PathVariable id: Long, @RequestBody userDTO: UserDTO) : ResponseEntity<UserDTO> =
         ResponseEntity.ok(userService.updateUser(userDTO))
 
-//
-//    @DeleteMapping("/{id}")
-//    fun delete(@PathVariable id: Long) : ResponseEntity<Void> {
-//        service.delete(id)
-//        return ResponseEntity<Void>(HttpStatus.OK)
-//    }
+    @DeleteMapping("/{id}")
+    fun deleteUser(@PathVariable id: Long) : ResponseEntity<Unit> =
+        ResponseEntity(userService.deleteUser(id), HttpStatus.NO_CONTENT)
+
 }
