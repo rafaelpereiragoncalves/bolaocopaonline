@@ -1,8 +1,6 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTO
-import com.bolaocopaonline.bolaocopaonline.integration.data.dto.UserDTOForm
-import com.bolaocopaonline.bolaocopaonline.integration.data.models.User
 import com.bolaocopaonline.bolaocopaonline.integration.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -11,30 +9,30 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("users")
-class UserController(private val service: UserService) {
+class UserController(
+    private val userService: UserService
+) {
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody @Valid userDTOForm: UserDTOForm) = service.create(userDTOForm)
+    fun createUser(@RequestBody @Valid userDTO: UserDTO): ResponseEntity<UserDTO> =
+        ResponseEntity(userService.createUser(userDTO), HttpStatus.CREATED)
 
     @GetMapping
-    fun getAll() : List<UserDTO> = service.getAll()
+    fun getUsers() : ResponseEntity<List<UserDTO>> =
+        ResponseEntity.ok(userService.getUsers())
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long) : ResponseEntity<User> =
-        service.getById(id).map {
-            ResponseEntity.ok(it)
-        }.orElse((ResponseEntity.notFound().build()))
+    fun getUser(@PathVariable id: Long) =
+        ResponseEntity.ok(userService.getUser(id))
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody user: UserDTO) : ResponseEntity<User> =
-        service.update(id, user).map {
-            ResponseEntity.ok(it)
-        }.orElse(ResponseEntity.notFound().build())
+    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: UserDTO) : ResponseEntity<UserDTO> =
+        ResponseEntity.ok(userService.updateUser(userDTO))
 
-    @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) : ResponseEntity<Void> {
-        service.delete(id)
-        return ResponseEntity<Void>(HttpStatus.OK)
-    }
+//
+//    @DeleteMapping("/{id}")
+//    fun delete(@PathVariable id: Long) : ResponseEntity<Void> {
+//        service.delete(id)
+//        return ResponseEntity<Void>(HttpStatus.OK)
+//    }
 }
