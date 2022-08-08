@@ -55,35 +55,4 @@ class UserServiceImpl(
 
         userRepository.deleteById(id)
     }
-
-
-//    override fun getAll(): List<UserDTO> {
-//        return users.stream().map {
-//            u -> userMapper.map(u)
-//        }.collect(Collectors.toList())
-//    }
-//
-//    override fun getById(id: Long): Optional<User> {
-//        return repository.findById(id)
-//    }
-//
-//    override fun update(id: Long, user: UserDTO): Optional<User> {
-//        val optional = getById(id)
-//
-//        return optional.map {
-//            val userToUpdate = it.copy(
-//                name = user.name,
-//                email = user.email,
-//                birthdate = user.birthdate,
-//                cellNumber = user.cellNumber
-//            )
-//            repository.save(userToUpdate)
-//        }
-//    }
-//
-//    override fun delete(id: Long) {
-//        repository.findById(id).map {
-//            repository.delete(it)
-//        }.orElseThrow { throw RuntimeException("Id not found.")}
-//    }
 }

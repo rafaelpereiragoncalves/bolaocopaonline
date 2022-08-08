@@ -29,8 +29,14 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http.csrf().disable().authorizeRequests()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .antMatchers(HttpMethod.POST, "/users").permitAll()
-            .antMatchers(HttpMethod.GET, "/swagger-ui/index.html").permitAll()
-            .anyRequest().authenticated()
+            .antMatchers(HttpMethod.GET,
+                "/v2/api-docs",
+                "/webjars/**",
+                "/swagger-resources/**",
+                "/configuration/**",
+                "/swagger-ui/**").permitAll()
+            .anyRequest()
+            .authenticated()
 
         http.cors().configurationSource(configurationCors())
         http.addFilter(JWTAuthorizationFilter(authenticationManager(), jwtUtils, userRepository))
