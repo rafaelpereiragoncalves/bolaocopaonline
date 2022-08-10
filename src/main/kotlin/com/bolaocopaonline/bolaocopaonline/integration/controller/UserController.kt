@@ -9,7 +9,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("users")
-class UserController(
+data class UserController(
     private val userService: UserService
 ) {
 
@@ -18,7 +18,7 @@ class UserController(
         ResponseEntity(userService.createUser(userDTO), HttpStatus.CREATED)
 
     @GetMapping
-    fun getUsers() : ResponseEntity<List<UserDTO>> =
+    fun getUsers(): ResponseEntity<List<UserDTO>> =
         ResponseEntity.ok(userService.getUsers())
 
     @GetMapping("/{id}")
@@ -26,11 +26,11 @@ class UserController(
         ResponseEntity.ok(userService.getUser(id))
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: UserDTO) : ResponseEntity<UserDTO> =
+    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: UserDTO): ResponseEntity<UserDTO> =
         ResponseEntity.ok(userService.updateUser(userDTO))
 
     @DeleteMapping("/{id}")
-    fun deleteUser(@PathVariable id: Long) : ResponseEntity<Unit> =
+    fun deleteUser(@PathVariable id: Long): ResponseEntity<Unit> =
         ResponseEntity(userService.deleteUser(id), HttpStatus.NO_CONTENT)
 
 }
