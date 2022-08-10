@@ -5,7 +5,9 @@ import com.bolaocopaonline.bolaocopaonline.integration.data.`interface`.KeyGroup
 import com.bolaocopaonline.bolaocopaonline.integration.data.dto.KeyGroupDTO
 import com.bolaocopaonline.bolaocopaonline.integration.data.mapper.KeyGroupMapper
 import com.bolaocopaonline.bolaocopaonline.integration.service.KeyGroupService
+import org.springframework.stereotype.Service
 
+@Service
 class KeyGroupServiceImpl(
     private val keyGroupRepository: KeyGroupRepository,
     private val keyGroupMapper: KeyGroupMapper
