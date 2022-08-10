@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface KeyGroupRepository : JpaRepository<KeyGroup, Long> {
 
-    @Query("SELECT kg FROM User as kg")
+    @Query("SELECT kg FROM KeyGroup as kg")
     fun getAllKeyGroups(): List<KeyGroup>
 }
