@@ -4,6 +4,7 @@ import com.bolaocopaonline.bolaocopaonline.integration.data.dto.KeyGroupDTO
 import com.bolaocopaonline.bolaocopaonline.integration.service.KeyGroupService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -20,6 +21,7 @@ data class KeyGroupController(
     fun creteKeyGroup(@RequestBody @Valid keyGroupDTO: KeyGroupDTO): ResponseEntity<KeyGroupDTO> =
         ResponseEntity(keyGroupService.createKeyGroup(keyGroupDTO), HttpStatus.CREATED)
 
+    @GetMapping
     fun getKeyGroups(): ResponseEntity<List<KeyGroupDTO>> =
         ResponseEntity.ok(keyGroupService.getKeyGroups())
 
