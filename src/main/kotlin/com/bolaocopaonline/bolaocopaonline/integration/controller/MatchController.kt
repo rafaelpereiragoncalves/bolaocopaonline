@@ -1,6 +1,9 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Match
+import com.bolaocopaonline.bolaocopaonline.integration.external.GamesService
+import com.bolaocopaonline.bolaocopaonline.integration.external.request.GamesRequests
+import com.bolaocopaonline.bolaocopaonline.integration.external.request.Response
 import com.bolaocopaonline.bolaocopaonline.integration.service.MatchService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -15,15 +18,18 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("Matches")
-class MatchController(private val service: MatchService) {
+@RequestMapping("matches")
+class MatchController(
+    private val service: MatchService,
+    private val serviceGames: GamesService
+) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody match: Match) : Match = service.create(match)
 
-    @GetMapping
-    fun getAll() : List<Match> = service.getAll()
+//    @GetMapping
+//    fun getAll() : List<Match> = service.getAll()
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long) : ResponseEntity<Match> =
@@ -42,4 +48,7 @@ class MatchController(private val service: MatchService) {
         service.delete(id)
         return ResponseEntity<Void>(HttpStatus.OK)
     }
+
+    @GetMapping
+    fun getMatches() : Collection<Response> = serviceGames.getGames()
 }

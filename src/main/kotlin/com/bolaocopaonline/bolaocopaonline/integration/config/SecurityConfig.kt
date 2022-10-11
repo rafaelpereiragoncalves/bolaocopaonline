@@ -29,6 +29,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http.csrf().disable().authorizeRequests()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .antMatchers(HttpMethod.POST, "/users").permitAll()
+            .antMatchers(HttpMethod.GET, "/matches").permitAll()
             .antMatchers(HttpMethod.GET,
                 "/v2/api-docs",
                 "/webjars/**",

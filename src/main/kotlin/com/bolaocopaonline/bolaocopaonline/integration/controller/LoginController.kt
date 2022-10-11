@@ -18,7 +18,7 @@ class LoginController(val userRepository: UserRepository) {
     @PostMapping
     fun login(@RequestBody loginDTO: LoginDTO) : ResponseEntity<Any> {
         return try{
-            val userFound = userRepository.findByEmail(loginDTO.name)
+            val userFound = userRepository.findByEmail(loginDTO.email)
             val token = JWTUtils().tokenGenerate(userFound.id.toString())
 
             val user = LoginResponseDTO(userFound.name, userFound.email, token)

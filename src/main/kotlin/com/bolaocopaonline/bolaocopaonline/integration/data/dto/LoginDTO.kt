@@ -1,7 +1,7 @@
 package com.bolaocopaonline.bolaocopaonline.integration.data.dto
 
 data class LoginDTO(
-    val name: String,
+    val email: String,
     val password: String
 )
 
