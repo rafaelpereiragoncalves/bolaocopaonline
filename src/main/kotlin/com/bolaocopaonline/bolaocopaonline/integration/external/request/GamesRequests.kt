@@ -10,5 +10,18 @@ data class Response(
 
 data class League(
     val id: Int,
-    val name: String
+    val name: String,
+    val standings: Collection<Standing>
+)
+
+data class Standing(
+    val team: Teamapi,
+    val points: Int,
+    val group: String
+)
+
+data class Teamapi(
+    val id: Int,
+    val name: String,
+    //val logo: Byte
 )
