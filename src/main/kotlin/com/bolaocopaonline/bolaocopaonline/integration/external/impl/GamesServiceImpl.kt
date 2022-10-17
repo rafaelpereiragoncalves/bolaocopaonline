@@ -33,7 +33,7 @@ class GamesServiceImpl(
             .build()
 
         //comentei dados de autenticação pra commit
-        //headers.set(<<key>>, <<value>>)
+        headers.set("x-apisports-key", "fd9117cf538aa2a44d351920347942a3")
 
         val result: ResponseEntity<GamesRequests> = template.exchange(uri.toUriString(), HttpMethod.GET, entity, String)
 
