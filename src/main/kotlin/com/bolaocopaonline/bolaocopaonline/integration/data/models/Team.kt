@@ -12,19 +12,19 @@ data class Team(
     val id: Long,
 
     @field:NotNull
-    @field:Size(min = 5, max = 50)
-    val name: String,
+    @field:Size(min = 2, max = 50)
+    var name: String,
 
     @field:NotNull
-    val groupStageScore: Int,
+    var groupStageScore: Int,
 
     @field:NotNull
-    val teamFlag: Byte,
+    var teamFlag: String,
 
     @field:ManyToOne
     @field:JoinColumn(name = "keyGroup_id", foreignKey = ForeignKey(name = "fk_keyGroupTeam_id"), nullable = false)
-    val keyGroup: KeyGroup,
+    var keyGroup: KeyGroup?,
 
     @field:OneToMany(fetch = FetchType.LAZY, mappedBy = "teamOne")
-    val matches: List<Match>? = emptyList()
+    var matches: List<Match>? = emptyList()
 )

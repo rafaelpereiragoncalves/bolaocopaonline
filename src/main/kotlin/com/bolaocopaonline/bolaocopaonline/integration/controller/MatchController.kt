@@ -20,16 +20,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("matches")
 class MatchController(
-    private val service: MatchService,
-    private val serviceGames: GamesService
+    private val service: MatchService
 ) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody match: Match) : Match = service.create(match)
 
-//    @GetMapping
-//    fun getAll() : List<Match> = service.getAll()
+    @GetMapping
+    fun getAll() : List<Match> = service.getAll()
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long) : ResponseEntity<Match> =
@@ -48,7 +47,4 @@ class MatchController(
         service.delete(id)
         return ResponseEntity<Void>(HttpStatus.OK)
     }
-
-    @GetMapping
-    fun getMatches() : Collection<Response> = serviceGames.getGames()
 }

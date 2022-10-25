@@ -6,5 +6,5 @@ import org.springframework.http.ResponseEntity
 
 interface GamesService {
 
-    fun getGames() : Collection<Response>
+    fun getTeams() : Collection<Response>
 }

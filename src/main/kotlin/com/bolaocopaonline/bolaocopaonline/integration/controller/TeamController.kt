@@ -1,14 +1,20 @@
 package com.bolaocopaonline.bolaocopaonline.integration.controller
 
 import com.bolaocopaonline.bolaocopaonline.integration.data.models.Team
+import com.bolaocopaonline.bolaocopaonline.integration.external.GamesService
+import com.bolaocopaonline.bolaocopaonline.integration.external.request.Response
 import com.bolaocopaonline.bolaocopaonline.integration.service.TeamService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("teams")
-class TeamController(private val service: TeamService) {
+class TeamController(
+    private val service: TeamService,
+    private val serviceGames: GamesService
+) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -34,4 +40,7 @@ class TeamController(private val service: TeamService) {
         service.delete(id)
         return ResponseEntity<Void>(HttpStatus.OK)
     }
+
+    @GetMapping("/extract")
+    fun getMatches(): Collection<Response> = serviceGames.getGames()
 }
